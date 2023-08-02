@@ -1,0 +1,14 @@
+SELECT employee_id,
+    employee_card_id,
+    name,
+    position,
+    u.status,
+    concat('**', y.phone) Phone,
+    organization,
+    entity
+FROM "yf_edwh"."yomaplus_staging_employees" AS y
+    left join "yomaplus_staging_users" as u on u.user_id = y."employee_id"
+where --y.position like '%Manager%' or
+     y.position like '%Head%'
+    or y.position like '%Chief%'
+    or y.position like '%Director%'--lect distinct position from "yomaplus_staging_employees"
